@@ -15,9 +15,6 @@ export const PAGE_CONTAINER_GUTTER_Y = 'py-4 sm:py-6 md:px-8'
 
 export const LAYOUT_COLLAPSIBLE_SIDE = 'collapsibleSide'
 export const LAYOUT_STACKED_SIDE = 'stackedSide'
-export const LAYOUT_TOP_BAR_CLASSIC = 'topBarClassic'
-export const LAYOUT_FRAMELESS_SIDE = 'framelessSide'
-export const LAYOUT_CONTENT_OVERLAY = 'contentOverlay'
 export const LAYOUT_BLANK = 'blank'
 
 export const THEME_ENUM = {
@@ -32,7 +29,4 @@ export const THEME_ENUM = {
     HEADER_HEIGHT: HEADER_HEIGHT,
     LAYOUT_COLLAPSIBLE_SIDE: LAYOUT_COLLAPSIBLE_SIDE,
     LAYOUT_STACKED_SIDE: LAYOUT_STACKED_SIDE,
-    LAYOUT_TOP_BAR_CLASSIC: LAYOUT_TOP_BAR_CLASSIC,
-    LAYOUT_FRAMELESS_SIDE: LAYOUT_FRAMELESS_SIDE,
-    LAYOUT_CONTENT_OVERLAY: LAYOUT_CONTENT_OVERLAY,
 } as const

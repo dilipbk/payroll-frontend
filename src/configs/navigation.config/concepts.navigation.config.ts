@@ -108,7 +108,6 @@ const conceptsNavigationConfig: NavigationTree[] = [
                     },
                 ],
             },
-
             {
                 key: 'concepts.account',
                 path: '',
@@ -141,23 +140,7 @@ const conceptsNavigationConfig: NavigationTree[] = [
                         },
                         subMenu: [],
                     },
-                    {
-                        key: 'concepts.account.activityLog',
-                        path: `${CONCEPTS_PREFIX_PATH}/account/activity-log`,
-                        title: 'Activity log',
-                        translateKey: 'nav.conceptsAccount.activityLog',
-                        icon: 'accountActivityLogs',
-                        type: NAV_ITEM_TYPE_ITEM,
-                        authority: [ADMIN, USER],
-                        meta: {
-                            description: {
-                                translateKey:
-                                    'nav.conceptsAccount.activityLogDesc',
-                                label: 'View recent activities',
-                            },
-                        },
-                        subMenu: [],
-                    },
+
                     {
                         key: 'concepts.account.rolesPermissions',
                         path: `${CONCEPTS_PREFIX_PATH}/account/roles-permissions`,
@@ -171,73 +154,6 @@ const conceptsNavigationConfig: NavigationTree[] = [
                                 translateKey:
                                     'nav.conceptsAccount.rolesPermissionsDesc',
                                 label: 'Manage roles & permissions',
-                            },
-                        },
-                        subMenu: [],
-                    },
-                    {
-                        key: 'concepts.account.pricing',
-                        path: `${CONCEPTS_PREFIX_PATH}/account/pricing`,
-                        title: 'Pricing',
-                        translateKey: 'nav.conceptsAccount.pricing',
-                        icon: 'accountPricing',
-                        type: NAV_ITEM_TYPE_ITEM,
-                        authority: [ADMIN, USER],
-                        meta: {
-                            description: {
-                                translateKey: 'nav.conceptsAccount.pricingDesc',
-                                label: 'View pricing plans',
-                            },
-                        },
-                        subMenu: [],
-                    },
-                ],
-            },
-            {
-                key: 'concepts.helpCenter',
-                path: '',
-                title: 'Help Center',
-                translateKey: 'nav.conceptsHelpCenter.helpCenter',
-                icon: 'helpCenter',
-                type: NAV_ITEM_TYPE_COLLAPSE,
-                authority: [ADMIN, USER],
-                meta: {
-                    description: {
-                        translateKey: 'nav.conceptsHelpCenter.helpCenterDesc',
-                        label: 'Support and articles',
-                    },
-                },
-                subMenu: [
-                    {
-                        key: 'concepts.helpCenter.supportHub',
-                        path: `${CONCEPTS_PREFIX_PATH}/help-center/support-hub`,
-                        title: 'Support Hub',
-                        translateKey: 'nav.conceptsHelpCenter.supportHub',
-                        icon: 'helpCeterSupportHub',
-                        type: NAV_ITEM_TYPE_ITEM,
-                        authority: [ADMIN, USER],
-                        meta: {
-                            description: {
-                                translateKey:
-                                    'nav.conceptsHelpCenter.supportHubDesc',
-                                label: 'Central support hub',
-                            },
-                        },
-                        subMenu: [],
-                    },
-                    {
-                        key: 'concepts.helpCenter.article',
-                        path: `${CONCEPTS_PREFIX_PATH}/help-center/article/pWBKE_0UiQ`,
-                        title: 'Article',
-                        translateKey: 'nav.conceptsHelpCenter.article',
-                        icon: 'helpCeterArticle',
-                        type: NAV_ITEM_TYPE_ITEM,
-                        authority: [ADMIN, USER],
-                        meta: {
-                            description: {
-                                translateKey:
-                                    'nav.conceptsHelpCenter.articleDesc',
-                                label: 'Read support articles',
                             },
                         },
                         subMenu: [],
