@@ -5,25 +5,6 @@ import type { Routes } from '@/@types/routes'
 
 const conceptsRoute: Routes = [
     {
-        key: 'concepts.ai.chat',
-        path: `${CONCEPTS_PREFIX_PATH}/ai/chat`,
-        component: lazy(() => import('@/views/concepts/ai/Chat')),
-        authority: [ADMIN, USER],
-        meta: {
-            pageContainerType: 'contained',
-        },
-    },
-    {
-        key: 'concepts.ai.image',
-        path: `${CONCEPTS_PREFIX_PATH}/ai/image`,
-        component: lazy(() => import('@/views/concepts/ai/Image')),
-        authority: [ADMIN, USER],
-        meta: {
-            pageContainerType: 'contained',
-            pageBackgroundType: 'plain',
-        },
-    },
-    {
         key: 'concepts.customers.customerList',
         path: `${CONCEPTS_PREFIX_PATH}/customers/customer-list`,
         component: lazy(
@@ -74,44 +55,6 @@ const conceptsRoute: Routes = [
         authority: [ADMIN, USER],
         meta: {
             pageContainerType: 'contained',
-        },
-    },
-    {
-        key: 'concepts.products.productList',
-        path: `${CONCEPTS_PREFIX_PATH}/products/product-list`,
-        component: lazy(() => import('@/views/concepts/products/ProductList')),
-        authority: [ADMIN, USER],
-    },
-    {
-        key: 'concepts.products.productEdit',
-        path: `${CONCEPTS_PREFIX_PATH}/products/product-edit/:id`,
-        component: lazy(() => import('@/views/concepts/products/ProductEdit')),
-        authority: [ADMIN, USER],
-        meta: {
-            header: {
-                title: 'Edit product',
-                description:
-                    'Quickly manage product details, stock, and availability.',
-                contained: true,
-            },
-            footer: false,
-        },
-    },
-    {
-        key: 'concepts.products.productCreate',
-        path: `${CONCEPTS_PREFIX_PATH}/products/product-create`,
-        component: lazy(
-            () => import('@/views/concepts/products/ProductCreate'),
-        ),
-        authority: [ADMIN, USER],
-        meta: {
-            header: {
-                title: 'Create product',
-                description:
-                    'Quickly add products to your inventory. Enter key details, manage stock, and set availability.',
-                contained: true,
-            },
-            footer: false,
         },
     },
     {
