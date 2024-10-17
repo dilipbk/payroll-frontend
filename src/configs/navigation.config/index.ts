@@ -1,7 +1,7 @@
 import {
     NAV_ITEM_TYPE_TITLE,
     NAV_ITEM_TYPE_ITEM,
-    NAV_ITEM_TYPE_COLLAPSE
+    NAV_ITEM_TYPE_COLLAPSE,
 } from '@/constants/navigation.constant'
 
 import type { NavigationTree } from '@/@types/navigation'
@@ -19,39 +19,39 @@ const navigationConfig: NavigationTree[] = [
     },
     /** Example purpose only, please remove */
     {
-        key: 'singleMenuItem',
-        path: '/single-menu-view',
-        title: 'Single menu item',
-        translateKey: 'nav.singleMenuItem',
-        icon: 'singleMenu',
+        key: 'emplo',
+        path: '/customers',
+        title: 'Customers',
+        translateKey: 'nav.customers',
+        icon: 'customers',
         type: NAV_ITEM_TYPE_ITEM,
         authority: [],
         subMenu: [],
     },
     {
-        key: 'collapseMenu',
+        key: 'employees',
         path: '',
-        title: 'Collapse Menu',
-        translateKey: 'nav.collapseMenu.collapseMenu',
-        icon: 'collapseMenu',
+        title: 'Employees',
+        translateKey: 'nav.employees.employees',
+        icon: 'employees',
         type: NAV_ITEM_TYPE_COLLAPSE,
         authority: [],
         subMenu: [
             {
-                key: 'collapseMenu.item1',
-                path: '/collapse-menu-item-view-1',
-                title: 'Collapse menu item 1',
-                translateKey: 'nav.collapseMenu.item1',
+                key: 'employees.list',
+                path: '/employees',
+                title: 'Employees',
+                translateKey: 'nav.employees.list',
                 icon: '',
                 type: NAV_ITEM_TYPE_ITEM,
                 authority: [],
                 subMenu: [],
             },
             {
-                key: 'collapseMenu.item2',
-                path: '/collapse-menu-item-view-2',
-                title: 'Collapse menu item 2',
-                translateKey: 'nav.collapseMenu.item2',
+                key: 'employees.add',
+                path: '/employees/add',
+                title: 'Add Employee',
+                translateKey: 'nav.employees.add',
                 icon: '',
                 type: NAV_ITEM_TYPE_ITEM,
                 authority: [],

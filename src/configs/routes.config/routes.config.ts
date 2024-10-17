@@ -12,6 +12,12 @@ export const protectedRoutes: Routes = [
         component: lazy(() => import('@/views/Home')),
         authority: [],
     },
+    {
+        key: 'employees',
+        path: '/employees',
+        component: lazy(() => import('@/views/Customers/index')),
+        authority: [],
+    },
     /** Example purpose only, please remove */
     {
         key: 'singleMenuItem',
@@ -34,24 +40,22 @@ export const protectedRoutes: Routes = [
     {
         key: 'groupMenu.single',
         path: '/group-single-menu-item-view',
-        component: lazy(() =>
-            import('@/views/demo/GroupSingleMenuItemView')
-        ),
+        component: lazy(() => import('@/views/demo/GroupSingleMenuItemView')),
         authority: [],
     },
     {
         key: 'groupMenu.collapse.item1',
         path: '/group-collapse-menu-item-view-1',
-        component: lazy(() =>
-            import('@/views/demo/GroupCollapseMenuItemView1')
+        component: lazy(
+            () => import('@/views/demo/GroupCollapseMenuItemView1'),
         ),
         authority: [],
     },
     {
         key: 'groupMenu.collapse.item2',
         path: '/group-collapse-menu-item-view-2',
-        component: lazy(() =>
-            import('@/views/demo/GroupCollapseMenuItemView2')
+        component: lazy(
+            () => import('@/views/demo/GroupCollapseMenuItemView2'),
         ),
         authority: [],
     },
