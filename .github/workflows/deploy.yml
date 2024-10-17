@@ -71,6 +71,7 @@ jobs:
                   source: 'build/*'
                   target: '/public_html/dev'
                   strip_components: 1
+                  debug: true
 
     deploy_tag:
         runs-on: ubuntu-latest
@@ -107,3 +108,4 @@ jobs:
                   source: 'build/*'
                   target: '/public_html/prod'
                   strip_components: 1
+                  debug: true
