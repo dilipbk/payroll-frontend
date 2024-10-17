@@ -17,17 +17,7 @@ const navigationConfig: NavigationTree[] = [
         authority: [],
         subMenu: [],
     },
-    /** Example purpose only, please remove */
-    {
-        key: 'emplo',
-        path: '/customers',
-        title: 'Customers',
-        translateKey: 'nav.customers',
-        icon: 'customers',
-        type: NAV_ITEM_TYPE_ITEM,
-        authority: [],
-        subMenu: [],
-    },
+
     {
         key: 'employees',
         path: '',
