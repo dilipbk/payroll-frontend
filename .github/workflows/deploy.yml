@@ -27,9 +27,6 @@ jobs:
             - name: Build the React app
               run: npm run build
 
-            - name: List build contents
-              run: ls -R build
-
             - name: Upload build artifacts
               uses: actions/upload-artifact@v3
               with:
@@ -51,27 +48,14 @@ jobs:
               run: ls -R build
 
             - name: Deploy to Hostinger (Dev)
-              uses: appleboy/ssh-action@master
+              uses: SamKirkland/FTP-Deploy-Action@4.3.3
               with:
-                  host: ${{ secrets.HOSTINGER_SSH_HOST }}
-                  username: ${{ secrets.HOSTINGER_SSH_USERNAME }}
-                  password: ${{ secrets.HOSTINGER_SSH_PASSWORD }}
-                  port: ${{ secrets.HOSTINGER_SSH_PORT }}
-                  script: |
-                      rm -rf /public_html/dev/*
-                  script_stop: true
-
-            - name: Copy files via SSH
-              uses: appleboy/scp-action@master
-              with:
-                  host: ${{ secrets.HOSTINGER_SSH_HOST }}
-                  username: ${{ secrets.HOSTINGER_SSH_USERNAME }}
-                  password: ${{ secrets.HOSTINGER_SSH_PASSWORD }}
-                  port: ${{ secrets.HOSTINGER_SSH_PORT }}
-                  source: 'build/*'
-                  target: '/public_html/dev'
-                  strip_components: 1
-                  debug: true
+                  server: ${{ secrets.HOSTINGER_FTP_SERVER_DEV }}
+                  username: ${{ secrets.HOSTINGER_FTP_USERNAME_DEV }}
+                  password: ${{ secrets.HOSTINGER_FTP_PASSWORD_DEV }}
+                  local-dir: ./build/
+                  server-dir: ./
+                  log-level: verbose
 
     deploy_tag:
         runs-on: ubuntu-latest
@@ -88,24 +72,11 @@ jobs:
               run: ls -R build
 
             - name: Deploy to Hostinger (Production)
-              uses: appleboy/ssh-action@master
+              uses: SamKirkland/FTP-Deploy-Action@4.3.3
               with:
-                  host: ${{ secrets.HOSTINGER_SSH_HOST }}
-                  username: ${{ secrets.HOSTINGER_SSH_USERNAME }}
-                  password: ${{ secrets.HOSTINGER_SSH_PASSWORD }}
-                  port: ${{ secrets.HOSTINGER_SSH_PORT }}
-                  script: |
-                      rm -rf /public_html/prod/*
-                  script_stop: true
-
-            - name: Copy files via SSH
-              uses: appleboy/scp-action@master
-              with:
-                  host: ${{ secrets.HOSTINGER_SSH_HOST }}
-                  username: ${{ secrets.HOSTINGER_SSH_USERNAME }}
-                  password: ${{ secrets.HOSTINGER_SSH_PASSWORD }}
-                  port: ${{ secrets.HOSTINGER_SSH_PORT }}
-                  source: 'build/*'
-                  target: '/public_html/prod'
-                  strip_components: 1
-                  debug: true
+                  server: ${{ secrets.HOSTINGER_FTP_SERVER_PROD }}
+                  username: ${{ secrets.HOSTINGER_FTP_USERNAME_PROD }}
+                  password: ${{ secrets.HOSTINGER_FTP_PASSWORD_PROD }}
+                  local-dir: ./build/
+                  server-dir: ./
+                  log-level: verbose
