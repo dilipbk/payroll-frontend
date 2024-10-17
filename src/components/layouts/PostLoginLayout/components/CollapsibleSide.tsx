@@ -7,6 +7,8 @@ import LayoutBase from '@/components//template/LayoutBase'
 import useResponsive from '@/utils/hooks/useResponsive'
 import { LAYOUT_COLLAPSIBLE_SIDE } from '@/constants/theme.constant'
 import type { CommonProps } from '@/@types/common'
+import ThemeSwitcher from '@/components/template/ThemeConfigurator/ThemeSwitcher'
+import ModeSwitcher from '@/components/template/ThemeConfigurator/ModeSwitcher'
 
 const CollapsibleSide = ({ children }: CommonProps) => {
     const { larger, smaller } = useResponsive()
@@ -29,6 +31,8 @@ const CollapsibleSide = ({ children }: CommonProps) => {
                         }
                         headerEnd={
                             <>
+                                <ModeSwitcher />
+                                <ThemeSwitcher />
                                 <UserProfileDropdown hoverable={false} />
                             </>
                         }

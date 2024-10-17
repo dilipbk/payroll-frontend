@@ -2,19 +2,18 @@ import { lazy } from 'react'
 import authRoute from './authRoute'
 import othersRoute from './othersRoute'
 import type { Routes } from '@/@types/routes'
-import Home from '@/views/Home'
 
 export const publicRoutes: Routes = [...authRoute]
 
 export const protectedRoutes: Routes = [
     {
-        key: 'home',
-        path: '/home',
-        component: Home,
+        key: 'dashboard',
+        path: '/dashboard',
+        component: lazy(() => import('@/views/Home')),
         authority: [],
     },
     {
-        key: 'employees',
+        key: 'employees.list',
         path: '/employees',
         component: lazy(() => import('@/views/Customers/index')),
         authority: [],
