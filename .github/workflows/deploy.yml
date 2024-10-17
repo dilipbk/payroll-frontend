@@ -57,6 +57,8 @@ jobs:
                   username: ${{ secrets.HOSTINGER_SSH_USERNAME }}
                   password: ${{ secrets.HOSTINGER_SSH_PASSWORD }}
                   port: ${{ secrets.HOSTINGER_SSH_PORT }}
+                  script: |
+                      rm -rf /public_html/dev/*
                   script_stop: true
 
             - name: Copy files via SSH
@@ -91,6 +93,8 @@ jobs:
                   username: ${{ secrets.HOSTINGER_SSH_USERNAME }}
                   password: ${{ secrets.HOSTINGER_SSH_PASSWORD }}
                   port: ${{ secrets.HOSTINGER_SSH_PORT }}
+                  script: |
+                      rm -rf /public_html/prod/*
                   script_stop: true
 
             - name: Copy files via SSH
