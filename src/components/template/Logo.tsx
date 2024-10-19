@@ -3,7 +3,7 @@ import { APP_NAME } from '@/constants/app.constant'
 import type { CommonProps } from '@/@types/common'
 
 interface LogoProps extends CommonProps {
-    type?: 'full' | 'streamline'
+    type?: 'full' | 'streamline' | 'new'
     mode?: 'light' | 'dark'
     imgClass?: string
     logoWidth?: number | string
@@ -13,7 +13,7 @@ const LOGO_SRC_PATH = '/img/logo/'
 
 const Logo = (props: LogoProps) => {
     const {
-        type = 'full',
+        type = 'new',
         mode = 'light',
         className,
         imgClass,

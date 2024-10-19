@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import type { CommonProps } from '../@types/common'
 import type { ElementType } from 'react'
 import { PiDotOutlineFill } from 'react-icons/pi'
+import { calcLength } from 'framer-motion'
 
 export interface MenuItemProps extends CommonProps {
     asElement?: ElementType

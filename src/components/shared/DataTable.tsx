@@ -123,7 +123,7 @@ function _DataTable<T>(
         onPaginationChange,
         onSelectChange,
         onSort,
-        pageSizes = [10, 25, 50, 100],
+        pageSizes = [5, 10, 25, 50, 100],
         selectable = false,
         skeletonAvatarProps,
         pagingData = {
@@ -272,7 +272,7 @@ function _DataTable<T>(
     }
 
     return (
-        <Loading loading={loading && data.length !== 0} type="cover">
+        <Loading loading={!!loading && data.length !== 0} type="cover">
             <Table {...rest}>
                 <THead>
                     {table.getHeaderGroups().map((headerGroup) => (
