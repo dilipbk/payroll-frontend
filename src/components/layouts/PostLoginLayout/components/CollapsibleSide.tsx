@@ -9,6 +9,8 @@ import { LAYOUT_COLLAPSIBLE_SIDE } from '@/constants/theme.constant'
 import type { CommonProps } from '@/@types/common'
 import ThemeSwitcher from '@/components/template/ThemeConfigurator/ThemeSwitcher'
 import ModeSwitcher from '@/components/template/ThemeConfigurator/ModeSwitcher'
+import { Button, Dropdown } from '@/components/ui'
+import { LuSettings } from 'react-icons/lu'
 
 const CollapsibleSide = ({ children }: CommonProps) => {
     const { larger, smaller } = useResponsive()
@@ -30,11 +32,29 @@ const CollapsibleSide = ({ children }: CommonProps) => {
                             </>
                         }
                         headerEnd={
-                            <>
-                                <ModeSwitcher />
-                                <ThemeSwitcher />
+                            <div className="flex items-center gap-4">
+                                <Dropdown
+                                    renderTitle={
+                                        <Button variant="plain" className="p-0">
+                                            <LuSettings size={22} />
+                                        </Button>
+                                    }
+                                >
+                                    <Dropdown.Item eventKey="a">
+                                        <label className="w-full flex items-center justify-between py-4 cursor-pointer">
+                                            Color Mode
+                                            <ModeSwitcher />
+                                        </label>
+                                    </Dropdown.Item>
+                                    <Dropdown.Item
+                                        eventKey="b"
+                                        className="mt-4"
+                                    >
+                                        <ThemeSwitcher />
+                                    </Dropdown.Item>
+                                </Dropdown>
                                 <UserProfileDropdown hoverable={false} />
-                            </>
+                            </div>
                         }
                     />
                     <div className="h-full flex flex-auto flex-col">
