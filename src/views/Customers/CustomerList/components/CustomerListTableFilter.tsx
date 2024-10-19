@@ -8,9 +8,14 @@ const CustomerListTableFilter = () => {
 
     return (
         <>
-            <Button icon={<TbFilter />} onClick={() => setDialogIsOpen(true)}>
-                Filter
-            </Button>
+            <div className="flex gap-2">
+                <Button
+                    icon={<TbFilter />}
+                    onClick={() => setDialogIsOpen(true)}
+                >
+                    Filter
+                </Button>
+            </div>
             <Dialog
                 isOpen={dialogIsOpen}
                 onClose={() => setDialogIsOpen(false)}

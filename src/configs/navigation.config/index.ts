@@ -12,7 +12,7 @@ const navigationConfig: NavigationTree[] = [
         path: '/dashboard',
         title: 'Dashboard',
         translateKey: 'nav.dashboard',
-        icon: 'dashboard',
+        icon: 'home',
         type: NAV_ITEM_TYPE_ITEM,
         authority: [],
         subMenu: [],

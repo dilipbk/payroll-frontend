@@ -14,7 +14,7 @@ const ThemeSwitcher = () => {
                 <button
                     key={key}
                     className={classNames(
-                        'h-8 w-8 rounded-full flex items-center justify-center border-2 border-white',
+                        'h-6 w-6 rounded-full flex items-center justify-center border-2 border-white',
                         schema === key && 'ring-2 ring-primary',
                     )}
                     style={{ backgroundColor: value[mode].primary || '' }}

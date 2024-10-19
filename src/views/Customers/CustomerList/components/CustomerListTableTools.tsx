@@ -1,6 +1,6 @@
 import CustomerListSearch from './CustomerListSearch'
 // import CustomerTableFilter from './CustomerListTableFilter'
-import { TableQueries } from '../types'
+import { TableQueries } from '../../types'
 import CustomerListTableFilter from './CustomerListTableFilter'
 
 const CustomersListTableTools = ({
