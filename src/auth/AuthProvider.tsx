@@ -25,15 +25,11 @@ export type IsolatedNavigatorRef = {
 const IsolatedNavigator = forwardRef<IsolatedNavigatorRef>((_, ref) => {
     const navigate = useNavigate()
 
-    useImperativeHandle(
-        ref,
-        () => {
-            return {
-                navigate,
-            }
-        },
-        [navigate],
-    )
+    useImperativeHandle(ref, () => {
+        return {
+            navigate,
+        }
+    }, [navigate])
 
     return <></>
 })
@@ -81,10 +77,11 @@ function AuthProvider({ children }: AuthProviderProps) {
             const resp = await apiSignIn(values)
             if (resp) {
                 handleSignIn({ accessToken: resp.token }, resp.user)
+                console.log('succestoken', resp)
                 redirect()
                 return {
                     status: 'success',
-                    message: '',
+                    message: 'User logged in successfully',
                 }
             }
             return {
