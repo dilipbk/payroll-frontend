@@ -18,45 +18,96 @@ export const protectedRoutes: Routes = [
         component: lazy(() => import('@/views/Customers/CustomerList/index')),
         authority: [],
     },
-    /** Example purpose only, please remove */
     {
-        key: 'singleMenuItem',
-        path: '/single-menu-view',
-        component: lazy(() => import('@/views/demo/SingleMenuView')),
+        key: 'employees.add',
+        path: '/employees/add',
+        component: lazy(() => import('@/views/Customers/AddCustomer/index')),
+        authority: [],
+        meta: {
+            header: {
+                title: 'Create Employee',
+                description:
+                    'Manage employee details, track purchases, and update preferences easily.',
+                contained: true,
+            },
+            footer: false,
+        },
+    },
+
+    {
+        key: 'employees.import',
+        path: '/employees/import',
+        component: lazy(() => import('@/views/Customers/AddCustomer/index')),
+        authority: [],
+        meta: {
+            header: {
+                title: 'Import Employees',
+                description:
+                    'Manage employee details, track purchases, and update preferences easily.',
+                contained: true,
+            },
+            footer: false,
+        },
+    },
+
+    {
+        key: 'employees.import-history',
+        path: '/employees/import-history',
+        component: lazy(() => import('@/views/Customers/CustomerList/index')),
+        authority: [],
+    },
+
+    {
+        key: 'employees.generate-document',
+        path: '/employees/generate-document',
+        component: lazy(() => import('@/views/Customers/CustomerList/index')),
+        authority: [],
+    },
+
+    {
+        key: 'employees.update-request',
+        path: '/employees/update-request',
+        component: lazy(() => import('@/views/Customers/CustomerList/index')),
+        authority: [],
+    },
+
+    {
+        key: 'organization.clientgroup',
+        path: '/organization/client-groups',
+        component: lazy(() => import('@/views/Customers/CustomerList/index')),
         authority: [],
     },
     {
-        key: 'collapseMenu.item1',
-        path: '/collapse-menu-item-view-1',
-        component: lazy(() => import('@/views/demo/CollapseMenuItemView1')),
+        key: 'organization.company',
+        path: '/organization/companies',
+        component: lazy(() => import('@/views/Customers/AddCustomer/index')),
         authority: [],
     },
     {
-        key: 'collapseMenu.item2',
-        path: '/collapse-menu-item-view-2',
-        component: lazy(() => import('@/views/demo/CollapseMenuItemView2')),
+        key: 'organization.location',
+        path: '/organization/locations',
+        component: lazy(() => import('@/views/Customers/AddCustomer/index')),
         authority: [],
     },
+
     {
-        key: 'groupMenu.single',
-        path: '/group-single-menu-item-view',
-        component: lazy(() => import('@/views/demo/GroupSingleMenuItemView')),
+        key: 'organization.sub-location',
+        path: '/organization/sub-locations',
+        component: lazy(() => import('@/views/Customers/AddCustomer/index')),
         authority: [],
     },
+
     {
-        key: 'groupMenu.collapse.item1',
-        path: '/group-collapse-menu-item-view-1',
-        component: lazy(
-            () => import('@/views/demo/GroupCollapseMenuItemView1'),
-        ),
+        key: 'organization.announcement',
+        path: '/organization/announcements',
+        component: lazy(() => import('@/views/Customers/AddCustomer/index')),
         authority: [],
     },
+
     {
-        key: 'groupMenu.collapse.item2',
-        path: '/group-collapse-menu-item-view-2',
-        component: lazy(
-            () => import('@/views/demo/GroupCollapseMenuItemView2'),
-        ),
+        key: 'organization.policy',
+        path: '/organization/policies',
+        component: lazy(() => import('@/views/Customers/AddCustomer/index')),
         authority: [],
     },
     ...othersRoute,
