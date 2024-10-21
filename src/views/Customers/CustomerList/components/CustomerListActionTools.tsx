@@ -39,7 +39,7 @@ const CustomerListActionTools = () => {
                 icon={<TbUserPlus className="text-sm" />}
                 size="sm"
                 className="text-sm font-medium rounded-lg"
-                onClick={() => navigate('/concepts/customers/customer-create')}
+                onClick={() => navigate('add')}
             >
                 Add new
             </Button>
