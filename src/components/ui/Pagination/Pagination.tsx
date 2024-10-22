@@ -42,6 +42,8 @@ const Pagination = (props: PaginationProps) => {
         return null
     }, [paginationTotal, internalPageSize])
 
+    console.log('paginationtotal', getInternalPageCount)
+
     const getValidCurrentPage = (count: number | string) => {
         const value = parseInt(count as string, 10)
         const internalPageCount = getInternalPageCount

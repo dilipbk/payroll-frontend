@@ -144,7 +144,7 @@ function _DataTable<T>(
         () =>
             pageSizes.map((number) => ({
                 value: number,
-                label: `${number} / page`,
+                label: `${number}`,
             })),
         [pageSizes],
     )
@@ -376,14 +376,16 @@ function _DataTable<T>(
             </Table>
             <div className="flex items-center justify-between mt-4">
                 <Pagination
+                    // displayTotal
                     pageSize={pageSize}
                     currentPage={pageIndex}
                     total={total}
                     onChange={handlePaginationChange}
                 />
-                <div style={{ minWidth: 130 }}>
+                <div>
                     <Select
                         size="sm"
+                        className="w-fit"
                         menuPlacement="top"
                         isSearchable={false}
                         value={pageSizeOption.filter(
