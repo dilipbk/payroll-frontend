@@ -30,7 +30,7 @@ export interface ButtonProps
     onClick?: (e: MouseEvent<HTMLButtonElement>) => void
     shape?: TypeAttributes.Shape
     size?: TypeAttributes.Size
-    variant?: 'solid' | 'plain' | 'default'
+    variant?: 'solid' | 'plain' | 'default' | 'danger'
     iconAlignment?: 'start' | 'end'
 }
 
@@ -130,6 +130,16 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
         return getBtnColor(btn)
     }
 
+    const dangerColor = () => {
+        const btn = {
+            bgColor: active ? `bg-red-500` : `bg-red-500`,
+            textColor: 'text-neutral',
+            hoverColor: active ? '' : `hover:bg-red-600`,
+            activeColor: ``,
+        }
+        return getBtnColor(btn)
+    }
+
     const plainColor = () => {
         const btn = {
             bgColor: active
@@ -175,6 +185,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
                 return plainColor()
             case 'default':
                 return defaultColor()
+            case 'danger':
+                return dangerColor()
             default:
                 return defaultColor()
         }
