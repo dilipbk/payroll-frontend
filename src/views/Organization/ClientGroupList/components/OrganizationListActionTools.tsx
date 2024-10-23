@@ -1,0 +1,42 @@
+import Button from '@/components/ui/Button'
+import { TbCloudDownload, TbUserPlus, TbFileImport } from 'react-icons/tb'
+import { useNavigate } from 'react-router-dom'
+import { CSVLink } from 'react-csv'
+import { list } from './OrganizationList'
+
+const OrganizationListActionTools = () => {
+    const navigate = useNavigate()
+
+    return (
+        <div className="flex flex-col md:flex-row gap-3">
+            <Button
+                icon={<TbFileImport className="text-sm" />}
+                size="sm"
+                className="text-sm font-medium rounded-lg"
+                onClick={() => navigate('/concepts/customers/customer-create')}
+            >
+                Import
+            </Button>
+            <CSVLink className="w-full" filename="customerList.csv" data={list}>
+                <Button
+                    size="sm"
+                    className="text-sm w-full font-medium rounded-lg"
+                    icon={<TbCloudDownload className="text-sm" />}
+                >
+                    Download
+                </Button>
+            </CSVLink>
+            <Button
+                variant="solid"
+                icon={<TbUserPlus className="text-sm" />}
+                size="sm"
+                className="text-sm font-medium rounded-lg"
+                onClick={() => navigate('add')}
+            >
+                Add new
+            </Button>
+        </div>
+    )
+}
+
+export default OrganizationListActionTools
