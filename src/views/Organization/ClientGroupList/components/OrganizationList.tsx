@@ -604,7 +604,7 @@ const ActionColumn = ({
     )
 }
 
-const CustomerListTable = ({
+const OrganizationListTable = ({
     tableData,
     setTableData,
 }: {
@@ -773,4 +773,4 @@ const CustomerListTable = ({
     )
 }
 
-export default CustomerListTable
+export default OrganizationListTable

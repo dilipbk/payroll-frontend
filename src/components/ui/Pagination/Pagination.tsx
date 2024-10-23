@@ -6,6 +6,7 @@ import Total from './Total'
 import useControllableState from '../hooks/useControllableState'
 import classNames from 'classnames'
 import type { CommonProps } from '../@types/common'
+import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
 
 export interface PaginationProps extends CommonProps {
     currentPage?: number
@@ -13,9 +14,11 @@ export interface PaginationProps extends CommonProps {
     onChange?: (pageNumber: number) => void
     pageSize?: number
     total?: number
+    hidePager?: boolean
+    currentOnly?: boolean
 }
 
-const defaultTotal = 5
+const defaultTotal = 1
 
 const Pagination = (props: PaginationProps) => {
     const {
@@ -25,6 +28,8 @@ const Pagination = (props: PaginationProps) => {
         onChange,
         pageSize = 1,
         total = 5,
+        hidePager = false,
+        currentOnly = false,
     } = props
 
     const [paginationTotal] = useControllableState({
@@ -100,6 +105,7 @@ const Pagination = (props: PaginationProps) => {
 
     const pagerClass = {
         default: 'pagination-pager',
+        custom: 'block h-auto w-auto border rounded-lg text-xs m-0 mx-1',
         inactive: 'pagination-pager-inactive',
         active: `text-primary bg-primary-50 hover:bg-primary-50 dark:bg-primary dark:text-neutral`,
         disabled: 'pagination-pager-disabled',
@@ -109,22 +115,41 @@ const Pagination = (props: PaginationProps) => {
 
     return (
         <div className={paginationClass}>
-            {displayTotal && <Total total={total} />}
+            {displayTotal && (
+                <Total
+                    total={total}
+                    page={internalCurrentPage}
+                    pages={getInternalPageCount}
+                />
+            )}
             <Prev
                 currentPage={internalCurrentPage}
                 pagerClass={pagerClass}
+                label={
+                    <span className="flex items-center">
+                        <HiChevronLeft size={18} /> Prev
+                    </span>
+                }
                 onPrev={onPrev}
             />
-            <Pager
-                pageCount={getInternalPageCount as number}
-                currentPage={internalCurrentPage}
-                pagerClass={pagerClass}
-                onChange={onPaginationChange}
-            />
+            {!hidePager ? (
+                <Pager
+                    pageCount={getInternalPageCount as number}
+                    currentPage={internalCurrentPage}
+                    pagerClass={pagerClass}
+                    onChange={onPaginationChange}
+                    currentOnly={currentOnly}
+                />
+            ) : null}
             <Next
                 currentPage={internalCurrentPage}
                 pageCount={getInternalPageCount as number}
                 pagerClass={pagerClass}
+                label={
+                    <span className="flex items-center">
+                        Prev <HiChevronRight size={18} />
+                    </span>
+                }
                 onNext={onNext}
             />
         </div>

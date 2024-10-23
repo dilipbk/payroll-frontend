@@ -1,12 +1,12 @@
-import CustomerListSearch from './CustomerListSearch'
+import OrganizationListSearch from './OrganizationListSearch'
 // import CustomerTableFilter from './CustomerListTableFilter'
 import { TableQueries } from '../../types'
-import CustomerListTableFilter from './CustomerListTableFilter'
+import OrganizationListTableFilter from './OrganizationListTableFilter'
 import { Button, Checkbox, Dropdown } from '@/components/ui'
 
 import { LiaColumnsSolid } from 'react-icons/lia'
 
-const CustomersListTableTools = ({
+const OrganizationListTableTools = ({
     tableData,
     setTableData,
 }: {
@@ -28,9 +28,9 @@ const CustomersListTableTools = ({
 
     return (
         <div className="flex items-center gap-2">
-            <CustomerListSearch onInputChange={handleInputChange} />
+            <OrganizationListSearch onInputChange={handleInputChange} />
             <div className="flex gap-2">
-                <CustomerListTableFilter />
+                <OrganizationListTableFilter />
 
                 <Dropdown
                     renderTitle={
@@ -71,4 +71,4 @@ const CustomersListTableTools = ({
     )
 }
 
-export default CustomersListTableTools
+export default OrganizationListTableTools

@@ -2,9 +2,9 @@ import Button from '@/components/ui/Button'
 import { TbCloudDownload, TbUserPlus, TbFileImport } from 'react-icons/tb'
 import { useNavigate } from 'react-router-dom'
 import { CSVLink } from 'react-csv'
-import { list } from './CustomerList'
+import { list } from './OrganizationList'
 
-const CustomerListActionTools = () => {
+const OrganizationListActionTools = () => {
     const navigate = useNavigate()
 
     return (
@@ -39,4 +39,4 @@ const CustomerListActionTools = () => {
     )
 }
 
-export default CustomerListActionTools
+export default OrganizationListActionTools
