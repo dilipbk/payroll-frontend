@@ -2,10 +2,7 @@ import Card from '@/components/ui/Card'
 import Input from '@/components/ui/Input'
 import { FormItem } from '@/components/ui/Form'
 import { Controller } from 'react-hook-form'
-import type { FormSectionBaseProps, RoleOption } from './types'
-import { Select } from '@/components/ui'
-import { countryList } from '@/constants/countries.constant'
-import { roleList } from '@/constants/roles.constant'
+import type { FormSectionBaseProps } from './types'
 
 type OverviewSectionProps = FormSectionBaseProps
 
@@ -79,16 +76,13 @@ const OverviewSection = ({ control, errors }: OverviewSectionProps) => {
                         name="role"
                         control={control}
                         render={({ field }) => (
-                            <Select<RoleOption>
-                                options={roleList}
+                            <Input
+                                disabled
+                                type="text"
+                                autoComplete="off"
+                                placeholder="Role"
+                                defaultValue="Employee"
                                 {...field}
-                                placeholder="Select Role"
-                                value={roleList.filter(
-                                    (option) => option.value === field.value,
-                                )}
-                                onChange={(option) =>
-                                    field.onChange(option?.value)
-                                }
                             />
                         )}
                     />

@@ -381,6 +381,8 @@ function _DataTable<T>(
                     currentPage={pageIndex}
                     total={total}
                     onChange={handlePaginationChange}
+                    displayTotal
+                    currentOnly
                 />
                 <div>
                     <Select

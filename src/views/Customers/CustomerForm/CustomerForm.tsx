@@ -3,7 +3,6 @@ import { Form } from '@/components/ui/Form'
 import Container from '@/components/shared/Container'
 import BottomStickyBar from '@/components/template/BottomStickyBar'
 import OverviewSection from './OverviewSection'
-import AddressSection from './AddressSection'
 import TagsSection from './TagsSection'
 import ProfileImageSection from './ProfileImageSection'
 import AccountSection from './AccountSection'
@@ -14,6 +13,7 @@ import { z } from 'zod'
 import type { ZodType } from 'zod'
 import type { CommonProps } from '@/@types/common'
 import type { CustomerFormSchema } from './types'
+import ScopeSelection from './ScopeSelection'
 
 type CustomerFormProps = {
     onFormSubmit: (values: CustomerFormSchema) => void
@@ -31,6 +31,12 @@ const validationSchema: ZodType<CustomerFormSchema> = z.object({
     location: z.string().min(1, { message: 'Please select a country' }),
     role: z.string().min(1, { message: 'Please select a role' }),
     img: z.string(),
+    client_group: z.string().min(1, { message: 'Please Select a company' }),
+    company: z.string().min(1, { message: 'Please Select a company' }),
+    sub_location: z.string().min(1, { message: 'Please Select a company' }),
+    designation: z.string().min(1, { message: 'Please Select a company' }),
+    department: z.string().min(1, { message: 'Please Select a company' }),
+    office_shift: z.string().min(1, { message: 'Please Select a company' }),
 })
 
 const CustomerForm = (props: CustomerFormProps) => {
@@ -74,7 +80,7 @@ const CustomerForm = (props: CustomerFormProps) => {
                 <div className="flex flex-col md:flex-row gap-4">
                     <div className="gap-4 flex flex-col flex-auto">
                         <OverviewSection control={control} errors={errors} />
-                        {/* <AddressSection control={control} errors={errors} /> */}
+                        <ScopeSelection control={control} errors={errors} />
                     </div>
                     <div className="md:w-[370px] gap-4 flex flex-col">
                         <ProfileImageSection

@@ -53,10 +53,16 @@ const CustomerEdit = () => {
                 defaultValues={{
                     full_name: '',
                     email: '',
-                    role: '',
+                    role: 'Employee',
                     img: '',
                     phone: '',
                     location: '',
+                    company: '',
+                    sub_location: '',
+                    designation: '',
+                    department: '',
+                    client_group: '',
+                    office_shift: '',
                 }}
                 onFormSubmit={handleFormSubmit}
             >

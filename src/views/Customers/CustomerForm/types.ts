@@ -15,16 +15,13 @@ export type AddressFields = {
 }
 
 export type CompanyFields = {
+    client_group: string
+    company: string
     location: string
-    allow_client_grp?: string
-    allow_company?: string
-    allow_loc?: string
-    allow_sub_loc?: string
-    allow_employee?: string
-    auto_client_grp?: string
-    auto_company?: string
-    auto_location?: string
-    auto_sub_location?: string
+    sub_location: string
+    department: string
+    designation: string
+    office_shift: string
 }
 
 export type ProfileImageFields = {

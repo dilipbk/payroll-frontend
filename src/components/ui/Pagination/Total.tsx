@@ -1,8 +1,12 @@
-const Total = (props: { total: number }) => {
-    const { total } = props
+const Total = (props: {
+    total: number
+    page: number
+    pages: number | null
+}) => {
+    const { total, page, pages } = props
     return (
         <div className="pagination-total">
-            Total <span>{total}</span> Items
+            Page {page} of {pages}
         </div>
     )
 }

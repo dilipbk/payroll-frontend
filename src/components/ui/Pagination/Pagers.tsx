@@ -66,6 +66,7 @@ const PrevMore = ({ className, onArrow }: MoreProps) => {
 type PagersProps = {
     pageCount: number
     currentPage: number
+    currentOnly?: boolean
     pagerClass: {
         default: string
         inactive: string
@@ -76,7 +77,7 @@ type PagersProps = {
 }
 
 const Pagers = (props: PagersProps) => {
-    const { pageCount, currentPage, onChange, pagerClass } = props
+    const { pageCount, currentPage, onChange, pagerClass, currentOnly } = props
 
     const [showPrevMore, setShowPrevMore] = useState(false)
     const [showNextMore, setShowNextMore] = useState(false)
@@ -175,7 +176,7 @@ const Pagers = (props: PagersProps) => {
         )
     }
 
-    return (
+    return currentOnly ? null : (
         <ul>
             {pageCount > 0 && (
                 <li

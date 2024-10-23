@@ -74,13 +74,17 @@ export const protectedRoutes: Routes = [
     {
         key: 'organization.clientgroup',
         path: '/organization/client-groups',
-        component: lazy(() => import('@/views/Customers/CustomerList/index')),
+        component: lazy(
+            () => import('@/views/Organization/ClientGroupList/index'),
+        ),
         authority: [],
     },
     {
         key: 'organization.company',
         path: '/organization/companies',
-        component: lazy(() => import('@/views/Customers/AddCustomer/index')),
+        component: lazy(
+            () => import('@/views/Organization/OrganizationList/index'),
+        ),
         authority: [],
     },
     {
