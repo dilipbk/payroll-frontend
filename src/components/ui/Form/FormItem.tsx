@@ -7,8 +7,12 @@ import { CONTROL_SIZES, LAYOUT } from '../utils/constants'
 import type { CommonProps, TypeAttributes } from '../@types/common'
 import type { ReactNode } from 'react'
 
+type asterisk = {
+    back?: boolean
+}
+
 export interface FormItemProps extends CommonProps {
-    asterisk?: boolean
+    asterisk?: asterisk
     errorMessage?: string
     extra?: string | ReactNode
     htmlFor?: string
@@ -96,12 +100,17 @@ const FormItem = forwardRef<HTMLDivElement, FormItemProps>((props, ref) => {
                     className={formLabelClass}
                     style={formLabelStyle()}
                 >
-                    {asterisk && (
+                    {!asterisk?.back && (
                         <span className="text-red-500 ltr:mr-1 rtl:ml-1">
                             *
                         </span>
                     )}
                     {label}
+                    {asterisk?.back && (
+                        <span className="text-red-500 ltr:ml-1 rtl:mr-1">
+                            *
+                        </span>
+                    )}
                     {extra && <span>{extra}</span>}
                     {label && formItemLayout !== 'vertical' && ':'}
                 </label>

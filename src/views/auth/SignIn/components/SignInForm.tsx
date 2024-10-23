@@ -19,14 +19,14 @@ interface SignInFormProps extends CommonProps {
 }
 
 type SignInFormSchema = {
-    email: string
+    username: string
     password: string
 }
 
 const validationSchema: ZodType<SignInFormSchema> = z.object({
-    email: z
-        .string({ required_error: 'Please enter your email' })
-        .min(1, { message: 'Please enter your email' }),
+    username: z
+        .string({ required_error: 'Please enter your username' })
+        .min(1, { message: 'Please enter your username' }),
     password: z
         .string({ required_error: 'Please enter your password' })
         .min(1, { message: 'Please enter your password' }),
@@ -43,8 +43,8 @@ const SignInForm = (props: SignInFormProps) => {
         control,
     } = useForm<SignInFormSchema>({
         defaultValues: {
-            email: 'admin-01@ecme.com',
-            password: '123Qwe',
+            username: '',
+            password: '',
         },
         resolver: zodResolver(validationSchema),
     })
@@ -52,13 +52,12 @@ const SignInForm = (props: SignInFormProps) => {
     const { signIn } = useAuth()
 
     const onSignIn = async (values: SignInFormSchema) => {
-        const { email, password } = values
+        const { username, password } = values
 
         if (!disableSubmit) {
             setSubmitting(true)
 
-            const result = await signIn({ email, password })
-
+            const result = await signIn({ username, password })
             if (result?.status === 'failed') {
                 setMessage?.(result.message)
             }
@@ -71,17 +70,18 @@ const SignInForm = (props: SignInFormProps) => {
         <div className={className}>
             <Form onSubmit={handleSubmit(onSignIn)}>
                 <FormItem
-                    label="Email"
-                    invalid={Boolean(errors.email)}
-                    errorMessage={errors.email?.message}
+                    asterisk={{ back: true }}
+                    label="Username"
+                    invalid={Boolean(errors.username)}
+                    errorMessage={errors.username?.message}
                 >
                     <Controller
-                        name="email"
+                        name="username"
                         control={control}
                         render={({ field }) => (
                             <Input
-                                type="email"
-                                placeholder="Email"
+                                type="text"
+                                placeholder="Username"
                                 autoComplete="off"
                                 {...field}
                             />
@@ -89,6 +89,7 @@ const SignInForm = (props: SignInFormProps) => {
                     />
                 </FormItem>
                 <FormItem
+                    asterisk={{ back: true }}
                     label="Password"
                     invalid={Boolean(errors.password)}
                     errorMessage={errors.password?.message}
