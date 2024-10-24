@@ -25,7 +25,7 @@ jobs:
               run: npm install
 
             - name: Build the React app
-              run: npm run build --mode=dev
+              run: npm run build --mode dev
 
             - name: Upload build artifacts
               uses: actions/upload-artifact@v3
