@@ -16,6 +16,11 @@
     > tr {
       > td {
         @apply px-6 py-4;
+        
+        > div {
+          @apply w-max
+        }
+
       }
     }
   }
@@ -50,6 +55,7 @@
         @apply px-6 py-4;
       }
     }
+
   }
 
   .tfoot {
@@ -104,6 +110,10 @@
     }
   }
 
+  /* tbody tr:nth-child(even) {
+    @apply !bg-gray-300
+  } */
+
   tbody {
     > tr {
       > td {
@@ -137,6 +147,19 @@
       }
     }
   }
+}
+
+.table-default {
+  @apply w-auto
+}
+
+.table-default {
+  >tbody {
+    >tr:nth-child(even){ > * {
+      @apply bg-black/[.03] dark:bg-white/[.03];
+    }
+  }
+}
 }
 
 .table-resizer {
