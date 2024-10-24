@@ -2,9 +2,6 @@ import CustomerListSearch from './CustomerListSearch'
 // import CustomerTableFilter from './CustomerListTableFilter'
 import { TableQueries } from '../../types'
 import CustomerListTableFilter from './CustomerListTableFilter'
-import { Button, Checkbox, Dropdown } from '@/components/ui'
-
-import { LiaColumnsSolid } from 'react-icons/lia'
 
 const CustomersListTableTools = ({
     tableData,
@@ -27,45 +24,13 @@ const CustomersListTableTools = ({
     }
 
     return (
-        <div className="flex items-center gap-2">
-            <CustomerListSearch onInputChange={handleInputChange} />
-            <div className="flex gap-2">
+        <div className="flex flex-col md:flex-row-reverse md:items-center gap-3">
+            <div>
                 <CustomerListTableFilter />
+            </div>
 
-                <Dropdown
-                    renderTitle={
-                        <Button className="text-sm font-medium rounded-lg">
-                            <LiaColumnsSolid size={22} />
-                        </Button>
-                    }
-                >
-                    <div className="p-3 min-w-64">
-                        <h3 className="text-lg mb-6">Column Filter</h3>
-                        <Checkbox.Group vertical value={['1']}>
-                            <Checkbox value="Selection A">
-                                Selection A{' '}
-                            </Checkbox>
-                            <Checkbox value="Selection B">
-                                Selection B{' '}
-                            </Checkbox>
-                            <Checkbox value="Selection C">
-                                Selection C{' '}
-                            </Checkbox>
-                        </Checkbox.Group>
-                        <div className="mt-8 flex gap-3">
-                            <Button size="sm" className="text-xs">
-                                Clear
-                            </Button>
-                            <Button
-                                size="sm"
-                                variant="solid"
-                                className="text-xs"
-                            >
-                                Apply
-                            </Button>
-                        </div>
-                    </div>
-                </Dropdown>
+            <div className="grow">
+                <CustomerListSearch onInputChange={handleInputChange} />
             </div>
         </div>
     )

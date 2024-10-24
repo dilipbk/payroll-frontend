@@ -126,7 +126,7 @@ const Pagination = (props: PaginationProps) => {
                 currentPage={internalCurrentPage}
                 pagerClass={pagerClass}
                 label={
-                    <span className="flex items-center">
+                    <span className="flex items-center pr-2 py-1 text-xs border border-transparent rounded-lg hover:border-primary">
                         <HiChevronLeft size={18} /> Prev
                     </span>
                 }
@@ -146,8 +146,8 @@ const Pagination = (props: PaginationProps) => {
                 pageCount={getInternalPageCount as number}
                 pagerClass={pagerClass}
                 label={
-                    <span className="flex items-center">
-                        Prev <HiChevronRight size={18} />
+                    <span className="flex items-center pl-2 py-1 text-xs border border-transparent rounded-lg hover:border-primary">
+                        Next <HiChevronRight size={18} />
                     </span>
                 }
                 onNext={onNext}
