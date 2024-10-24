@@ -114,5 +114,28 @@ export const protectedRoutes: Routes = [
         component: lazy(() => import('@/views/Customers/AddCustomer/index')),
         authority: [],
     },
+
+    // routes for roles and permissions
+
+    {
+        key: 'rolesandpermission.users',
+        path: '/users',
+        component: lazy(() => import('@/views/Customers/CustomerList/index')),
+        authority: [],
+    },
+    {
+        key: 'rolesandpermission.roles',
+        path: '/roles',
+        component: lazy(() => import('@/views/Customers/CustomerList/index')),
+        authority: [],
+    },
+
+    {
+        key: 'rolesandpermission.permissions',
+        path: '/permissions',
+        component: lazy(() => import('@/views/Customers/CustomerList/index')),
+        authority: [],
+    },
+
     ...othersRoute,
 ]

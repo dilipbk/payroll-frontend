@@ -769,6 +769,7 @@ const CustomerListTable = ({
             onSort={handleSort}
             onCheckBoxChange={handleRowSelect}
             onIndeterminateCheckBoxChange={handleAllRowSelect}
+            stripped={true}
         />
     )
 }

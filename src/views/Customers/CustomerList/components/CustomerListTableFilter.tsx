@@ -10,7 +10,11 @@ const CustomerListTableFilter = () => {
 
     return (
         <>
-            <Button icon={<TbFilter />} onClick={() => setDialogIsOpen(true)}>
+            <Button
+                className="w-full"
+                icon={<TbFilter />}
+                onClick={() => setDialogIsOpen(true)}
+            >
                 Filter
             </Button>
 
