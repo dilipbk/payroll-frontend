@@ -604,7 +604,7 @@ const ActionColumn = ({
     )
 }
 
-const CustomerListTable = ({
+const OrganizationListTable = ({
     tableData,
     setTableData,
 }: {
@@ -769,9 +769,8 @@ const CustomerListTable = ({
             onSort={handleSort}
             onCheckBoxChange={handleRowSelect}
             onIndeterminateCheckBoxChange={handleAllRowSelect}
-            stripped={true}
         />
     )
 }
 
-export default CustomerListTable
+export default OrganizationListTable

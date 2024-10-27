@@ -24,9 +24,14 @@ const CustomersListTableTools = ({
     }
 
     return (
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-            <CustomerListSearch onInputChange={handleInputChange} />
-            <CustomerListTableFilter />
+        <div className="flex flex-col md:flex-row-reverse md:items-center gap-3">
+            <div>
+                <CustomerListTableFilter />
+            </div>
+
+            <div className="grow">
+                <CustomerListSearch onInputChange={handleInputChange} />
+            </div>
         </div>
     )
 }

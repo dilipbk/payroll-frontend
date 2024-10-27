@@ -5,16 +5,12 @@ import { TbFilter } from 'react-icons/tb'
 import { Input, Radio, Select } from '@/components/ui'
 // import Addon from '@/components/ui/InputGroup/Addon'
 
-const CustomerListTableFilter = () => {
+const OrganizationListTableFilter = () => {
     const [dialogIsOpen, setDialogIsOpen] = useState<boolean>(false)
 
     return (
         <>
-            <Button
-                className="w-full"
-                icon={<TbFilter />}
-                onClick={() => setDialogIsOpen(true)}
-            >
+            <Button icon={<TbFilter />} onClick={() => setDialogIsOpen(true)}>
                 Filter
             </Button>
 
@@ -63,4 +59,4 @@ const CustomerListTableFilter = () => {
     )
 }
 
-export default CustomerListTableFilter
+export default OrganizationListTableFilter

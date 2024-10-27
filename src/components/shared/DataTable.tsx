@@ -53,6 +53,7 @@ type DataTableProps<T> = {
         pageIndex: number
         pageSize: number
     }
+    stripped: boolean
     checkboxChecked?: (row: T) => boolean
     indeterminateCheckboxChecked?: (row: Row<T>[]) => boolean
 } & TableProps
@@ -123,7 +124,7 @@ function _DataTable<T>(
         onPaginationChange,
         onSelectChange,
         onSort,
-        pageSizes = [5, 10, 25, 50, 100],
+        pageSizes = [25, 100, 200, 500, 1000],
         selectable = false,
         skeletonAvatarProps,
         pagingData = {
@@ -133,6 +134,7 @@ function _DataTable<T>(
         },
         checkboxChecked,
         indeterminateCheckboxChecked,
+        stripped,
         ...rest
     } = props
 
@@ -144,7 +146,7 @@ function _DataTable<T>(
         () =>
             pageSizes.map((number) => ({
                 value: number,
-                label: `${number} / page`,
+                label: `${number}`,
             })),
         [pageSizes],
     )
@@ -273,8 +275,8 @@ function _DataTable<T>(
 
     return (
         <Loading loading={!!loading && data.length !== 0} type="cover">
-            <Table {...rest}>
-                <THead>
+            <Table {...rest} className={stripped ? 'stripped' : ''}>
+                <THead className="bg-primary-subtle">
                     {table.getHeaderGroups().map((headerGroup) => (
                         <Tr key={headerGroup.id}>
                             {headerGroup.headers.map((header) => {
@@ -355,7 +357,7 @@ function _DataTable<T>(
                                                         <Td
                                                             key={cell.id}
                                                             style={{
-                                                                width: cell.column.getSize(),
+                                                                width: 'max-content',
                                                             }}
                                                         >
                                                             {flexRender(
@@ -376,14 +378,18 @@ function _DataTable<T>(
             </Table>
             <div className="flex items-center justify-between mt-4">
                 <Pagination
+                    // displayTotal
                     pageSize={pageSize}
                     currentPage={pageIndex}
                     total={total}
                     onChange={handlePaginationChange}
+                    displayTotal
+                    currentOnly
                 />
-                <div style={{ minWidth: 130 }}>
+                <div>
                     <Select
                         size="sm"
+                        className="w-fit"
                         menuPlacement="top"
                         isSearchable={false}
                         value={pageSizeOption.filter(
