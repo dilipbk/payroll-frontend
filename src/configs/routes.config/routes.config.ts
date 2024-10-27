@@ -120,22 +120,43 @@ export const protectedRoutes: Routes = [
     {
         key: 'rolesandpermission.users',
         path: '/users',
-        component: lazy(() => import('@/views/Customers/CustomerList/index')),
+        component: lazy(() => import('@/views/RolesAndPermission/users/index')),
         authority: [],
     },
     {
         key: 'rolesandpermission.roles',
         path: '/roles',
-        component: lazy(() => import('@/views/Customers/CustomerList/index')),
+        component: lazy(() => import('@/views/RolesAndPermission/roles/index')),
         authority: [],
+        meta: {
+            pageContainerType: 'contained',
+            pageBackgroundType: 'plain',
+        },
     },
 
     {
-        key: 'rolesandpermission.permissions',
-        path: '/permissions',
-        component: lazy(() => import('@/views/Customers/CustomerList/index')),
+        key: 'rolesandpermission.roles',
+        path: '/roles/edit/:id',
+        component: lazy(
+            () => import('@/views/RolesAndPermission/roles/UpdateRole'),
+        ),
         authority: [],
+        meta: {
+            header: {
+                title: 'Update Role',
+                description: 'Update Role and assign groups',
+                contained: true,
+            },
+            footer: false,
+        },
     },
+
+    // {
+    //     key: 'rolesandpermission.permissions',
+    //     path: '/permissions',
+    //     component: lazy(() => import('@/views/Customers/CustomerList/index')),
+    //     authority: [],
+    // },
 
     ...othersRoute,
 ]

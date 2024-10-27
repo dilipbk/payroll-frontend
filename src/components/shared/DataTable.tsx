@@ -53,7 +53,7 @@ type DataTableProps<T> = {
         pageIndex: number
         pageSize: number
     }
-    stripped: boolean
+    stripped?: boolean
     checkboxChecked?: (row: T) => boolean
     indeterminateCheckboxChecked?: (row: Row<T>[]) => boolean
 } & TableProps
@@ -313,7 +313,7 @@ function _DataTable<T>(
                         </Tr>
                     ))}
                 </THead>
-                {loading && data.length === 0 ? (
+                {loading ? (
                     <TableRowSkeleton
                         // eslint-disable-next-line  @typescript-eslint/no-explicit-any
                         columns={(finalColumns as Array<T>).length}

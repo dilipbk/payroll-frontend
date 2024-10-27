@@ -1,13 +1,14 @@
-import DataTable, {
-    OnSortParam,
-    ColumnDef,
-    Row,
-} from '@/components/shared/DataTable'
-import type { TableQueries, User } from '../types'
+import { OnSortParam, ColumnDef, Row } from '@/components/shared/DataTable'
+import type { Role, TableQueries, User } from '../types'
 import { useEffect, useMemo, useState } from 'react'
-import { Avatar, Tag, Tooltip } from '@/components/ui'
-import { Link, useNavigate } from 'react-router-dom'
+import { Tooltip } from '@/components/ui'
+import { useNavigate } from 'react-router-dom'
 import { TbEye, TbPencil } from 'react-icons/tb'
+import useUserStore from '@/store/userStore'
+import { AdaptiveCard, Container } from '@/components/shared'
+import ActionTools from '@/components/template/Table/ActionTools'
+import TableTools from '@/components/template/Table/TableTools'
+import Table from '@/components/template/Table/ThemeTable'
 
 // const statusColor: Record<string, string> = {
 //     active: 'bg-emerald-200 dark:bg-emerald-200 text-gray-900 dark:text-gray-900',
@@ -59,38 +60,44 @@ const ActionColumn = ({
     )
 }
 
-const UserList = ({
-    tableData,
-    setTableData,
-}: {
-    tableData: TableQueries
-    setTableData: React.Dispatch<React.SetStateAction<TableQueries>>
-}) => {
+const UserList = () => {
     const navigate = useNavigate()
 
-    const [selectedCustomer, setSelectedCustomer] = useState<User[]>([])
+    const { users, isLoading, fetchUsers } = useUserStore((state) => ({
+        users: state.users,
+        isLoading: state.isLoading,
+        fetchUsers: state.fetchUsers,
+    }))
+
+    const [tableData, setTableData] = useState<TableQueries>({
+        pageIndex: 1,
+        pageSize: 5,
+        total: users.length,
+    })
+
+    const [selectedUser, setselectedUser] = useState<User[]>([])
     const [rowData, setRowData] = useState<User[]>([])
+    const [initialLoading, setInitialLoading] = useState(true)
 
     useEffect(() => {
         if (tableData?.pageIndex && tableData?.pageSize) {
             const start = (tableData?.pageIndex - 1) * tableData?.pageSize
             const end = tableData?.pageIndex * tableData?.pageSize
-            // const filtered = list?.slice(start, end)
-            // setRowData(filtered)
+            const filtered = users?.slice(start, end) as User[]
+            setRowData(filtered)
         } else {
-            // setRowData(list)
+            const newUsers = users as User[]
+            setRowData(newUsers)
         }
-    }, [tableData])
+    }, [tableData, users])
 
-    useEffect(() => {}, [])
-
-    // useEffect(() => {
-    //     const timer = setTimeout(() => {
-    //         setIsLoading(false)
-    //     }, 0)
-
-    //     return () => clearTimeout(timer)
-    // }, [])
+    useEffect(() => {
+        const loadData = async () => {
+            await fetchUsers('671918be802455a27db88e8b')
+            setInitialLoading(false)
+        }
+        loadData()
+    }, [])
 
     const handleEdit = (user: User) => {
         navigate(`/concepts/customers/customer-edit/${user.id}`)
@@ -100,23 +107,23 @@ const UserList = ({
         navigate(`/concepts/customers/customer-details/${user.id}`)
     }
 
-    const handleRowSelect = (checked: boolean, row: User) => {
-        const isPresent = selectedCustomer?.find((item) => item?.id === row?.id)
+    const handleRowSelect = (checked: boolean, row: Row<User>) => {
+        const isPresent = selectedUser?.find((item) => item?.id === row?.id)
 
         if (isPresent) {
-            const filteredList = selectedCustomer?.filter(
+            const filteredList = selectedUser?.filter(
                 (item) => item?.id !== row?.id,
             )
-            setSelectedCustomer(filteredList)
+            setselectedUser(filteredList)
         } else {
-            setSelectedCustomer([...selectedCustomer, row])
+            setselectedUser([...selectedUser, row])
         }
     }
 
     const handleSetTableData = (data: TableQueries) => {
         setTableData(data)
-        if (selectedCustomer.length > 0) {
-            setSelectedCustomer([])
+        if (selectedUser.length > 0) {
+            setselectedUser([])
         }
     }
 
@@ -142,24 +149,21 @@ const UserList = ({
     const handleAllRowSelect = (checked: boolean, rows: Row<User>[]) => {
         if (checked) {
             const originalRows = rows.map((row) => row.original)
-            setSelectedCustomer(originalRows)
+            setselectedUser(originalRows)
         } else {
-            setSelectedCustomer([])
+            setselectedUser([])
         }
     }
 
     const columns: ColumnDef<User>[] = useMemo(
         () => [
             {
-                header: 'Name',
-                accessorKey: 'name',
-                cell: (props) => {
-                    return (
-                        <span>
-                            ${props.row.first_name} {props.row.last_name}
-                        </span>
-                    )
-                },
+                header: 'First Name',
+                accessorKey: 'first_name',
+            },
+            {
+                header: 'Last Name',
+                accessorKey: 'last_name',
             },
             {
                 header: 'Username',
@@ -171,15 +175,21 @@ const UserList = ({
             },
             {
                 header: 'Role',
-                accessorKey: 'role',
-            },
-            {
-                header: 'Status',
-                accessorKey: 'status',
+                accessorKey: 'roles',
+                cell(props) {
+                    return (
+                        <span>
+                            {props
+                                ?.getValue()
+                                .map((role: Role) => role.name)
+                                .join(', ')}
+                        </span>
+                    )
+                },
             },
             {
                 header: 'Last Login',
-                accessorKey: 'last_login',
+                accessorKey: 'last_login_date',
             },
             {
                 header: '',
@@ -199,28 +209,59 @@ const UserList = ({
     )
 
     return (
-        <DataTable
-            selectable
-            columns={columns}
-            data={rowData}
-            noData={false && !rowData?.length}
-            loading={false}
-            skeletonAvatarColumns={[0]}
-            skeletonAvatarProps={{ width: 28, height: 28 }}
-            pagingData={{
-                total: list.length,
-                pageIndex: tableData?.pageIndex as number,
-                pageSize: tableData?.pageSize as number,
-            }}
-            checkboxChecked={(row) =>
-                selectedCustomer.some((selected) => selected.id === row.id)
-            }
-            onPaginationChange={handlePaginationChange}
-            onSelectChange={handleSelectChange}
-            onSort={handleSort}
-            onCheckBoxChange={handleRowSelect}
-            onIndeterminateCheckBoxChange={handleAllRowSelect}
-        />
+        // <DataTable
+        //     selectable
+        //     columns={columns}
+        //     data={rowData}
+        //     noData={false && !rowData?.length}
+        //     loading={false}
+        //     skeletonAvatarColumns={[0]}
+        //     skeletonAvatarProps={{ width: 28, height: 28 }}
+        //     pagingData={{
+        //         total: users.length,
+        //         pageIndex: tableData?.pageIndex as number,
+        //         pageSize: tableData?.pageSize as number,
+        //     }}
+        //     checkboxChecked={(row) =>
+        //         selectedCustomer.some((selected) => selected.id === row.id)
+        //     }
+        //     onPaginationChange={handlePaginationChange}
+        //     onSelectChange={handleSelectChange}
+        //     onSort={handleSort}
+        //     onCheckBoxChange={handleRowSelect}
+        //     onIndeterminateCheckBoxChange={handleAllRowSelect}
+        // />
+        <Container>
+            <AdaptiveCard>
+                <div className="flex flex-col gap-4">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                        <h3>Users</h3>
+                        <ActionTools list={[]} />
+                    </div>
+                    <TableTools
+                        tableData={tableData}
+                        setTableData={setTableData}
+                    />
+                    <Table
+                        isSelectable
+                        list={users}
+                        tableData={tableData}
+                        setTableData={setTableData}
+                        columns={columns}
+                        rowData={rowData}
+                        loading={isLoading || initialLoading}
+                        pagingData={tableData}
+                        selectedData={selectedUser}
+                        setSelectedData={setselectedUser}
+                        handleTablePagination={handlePaginationChange}
+                        handlePageLimit={handleSelectChange}
+                        handleSelectAllData={handleAllRowSelect}
+                        handleSelectData={handleRowSelect}
+                        handleSortData={handleSort}
+                    />
+                </div>
+            </AdaptiveCard>
+        </Container>
     )
 }
 

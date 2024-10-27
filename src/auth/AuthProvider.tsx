@@ -77,7 +77,7 @@ function AuthProvider({ children }: AuthProviderProps) {
             const resp = await apiSignIn(values)
             if (resp) {
                 handleSignIn({ accessToken: resp.token }, resp.user)
-                console.log('succestoken', resp)
+
                 redirect()
                 return {
                     status: 'success',
