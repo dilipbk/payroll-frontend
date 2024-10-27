@@ -752,7 +752,7 @@ const CustomerListTable = ({
             selectable
             columns={columns}
             data={rowData}
-            noData={false && !rowData?.length}
+            noData={!rowData?.length}
             loading={false}
             skeletonAvatarColumns={[0]}
             skeletonAvatarProps={{ width: 28, height: 28 }}

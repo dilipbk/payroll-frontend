@@ -19,6 +19,22 @@ type AuthAction = {
     setUser: (payload: User) => void
 }
 
+interface AuthData {
+    token: string | null
+    refreshToken: string | null
+    setToken: (token: string) => void
+    setRefreshToken: (refreshToken: string) => void
+    logout: () => void
+}
+
+export const useAuthStore = create<AuthData>((set) => ({
+    token: null,
+    refreshToken: null,
+    setToken: (token) => set({ token }),
+    setRefreshToken: (refreshToken) => set({ refreshToken }),
+    logout: () => set({ token: null, refreshToken: null }),
+}))
+
 const getPersistStorage = () => {
     if (appConfig.accessTokenPersistStrategy === 'localStorage') {
         return localStorage
